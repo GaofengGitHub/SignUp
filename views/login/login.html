@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>登录</title>
+		<link rel="stylesheet" href="../../assets/css/mui.min.css" />
+		<link rel="stylesheet" href="../../assets/css/page/login.css" />
+	</head>
+
+	<body>
+		
+		<!--content开始-->
+		<div class="mui-content">
+			<!--账号密码登录 begin-->
+			<div id='passwordLogin' class="g-password-login">
+				<div class="title">
+					<span>登&nbsp;&nbsp;录</span><br />
+					<span class="english">L O G I N</span>
+				</div>
+				<div class="login-form">
+					<div class="m-user">
+						<input type="text" id="userName" value="" placeholder="请输入用户名" />
+					</div>
+					<div class="m-password">
+						<input id="password" type="password" value="" placeholder="请输入密码" />
+					</div>
+					<button id="loginBtn" class="mui-btn mui-btn-block u-btn-login" type="button">登 录</button>
+				</div>
+				<div class="mui-content-padded m-shift">
+					<div class="link-area">
+						<span id='reg'>注册账号</span>
+						<span class="spliter">|</span>
+						<span id="forgot">忘记密码</span>
+					</div>
+				</div>
+				<div id="shift" class="mui-content-padded m-shift m-change" style="display: none;">
+					<div class="link-area">
+						<div class="deliver-line">
+							<hr class="hrLine" /> 手势密码登录
+							<hr class="hrLine" />
+						</div>
+						<br />
+						<img id="shiftLogin" src="../../assets/images/login/icon_getstuser_login.png" />
+					</div>
+				</div>
+			</div>
+			<!--账号密码登录 end-->
+
+			<!--手势登录面板 begin-->
+			<div id="gestureLogin" class="g-gesture-login">
+				<div class="title">
+					<span>手势登录</span>
+				</div>
+				<div id="holder" class="mui-locker" data-locker-options='{"ringColor":"rgba(244,119,118,1)","fillColor":"rgba(255,255,255,1)","pointColor":"rgba(244,119,118,1)","lineColor":"rgba(244,119,118,1)"}' data-locker-width='300' data-locker-height='300'>
+				</div>
+				<div class="u-account">
+					<button id="accounttLogin" class="mui-btn mui-btn-block mui-btn-danger" type="button">使用账号登录</button>
+				</div>
+
+			</div>
+			<!--手势密码登录 end-->
+
+		</div>
+		<!--content结束-->
+		<script src="../../lib/mui.min.js"></script>
+		<script src="../../lib/jsencrypt.min.js"></script>
+		<script src="../../lib/mui.locker.js"></script>
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src="../../assets/js/page/login.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				plus.webview.currentWebview().setStyle({
+                    'popGesture': 'none'
+                });
+                
+				if(!plus.storage.getItem('userInfo') || (plus.storage.getItem('userInfo') && JSON.parse(plus.storage.getItem('userInfo')).hasgPassWord == '0')) {
+					document.getElementById("shift").style.display = 'none';
+				} else {
+					document.getElementById("userName").value = JSON.parse(plus.storage.getItem('userInfo')).userName;
+				}
+				
+				
+				
+				function doubleTapBack() {
+					//首次按键，提示‘再按一次退出应用’
+					if(!first) {
+						first = new Date().getTime();
+						mui.toast('再按一次退出应用');
+						setTimeout(function() {
+							first = null;
+						}, 2000);
+					} else {
+						if(new Date().getTime() - first < 2000) {
+							plus.runtime.quit();
+						}
+					}
+				}
+				var first = null;
+				mui.back = function() {
+					var gestureLogin = document.getElementById('gestureLogin');
+					var passwordLogin = document.getElementById("passwordLogin");
+					if(gestureLogin.style.display == 'block') {
+						gestureLogin.style.display = 'none';
+						passwordLogin.style.display = 'block';
+					} else {
+						doubleTapBack();
+					}
+				};
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,405 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的应用</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/mui.min.css" />
+		<link rel="stylesheet" href="../../assets/css/page/navbar.css" />
+		<link rel="stylesheet" href="../../assets/css/page/iphoneX.css" />
+		<link rel="stylesheet" href="../../assets/css/page/application.css" />
+		<!--<link rel="stylesheet" href="../../assets/css/page/application-zhty.css" />-->
+	</head>
+	<style type="text/css">
+		.no-data {
+				background: #f1f1f1;
+				font-size: 14px;
+				text-align: center;
+			}
+			
+			.no-data div {
+				color: #C0C0C0;
+			}
+		.mui-table-view-cell {
+			padding: 0;
+		}
+		
+		.mui-table-view-cell:after {
+			height: 0px;
+		}
+		
+		.mui-scroll-wrapper {
+			bottom: 50px
+		}
+		
+		.mui-bar~.mui-content .mui-fullscreen {
+			top: 44px;
+			height: auto;
+		}
+		
+		.mui-pull-top-tips {
+			position: absolute;
+			top: -20px;
+			left: 50%;
+			margin-left: -25px;
+			width: 40px;
+			height: 40px;
+			border-radius: 100%;
+			z-index: 1;
+		}
+		
+		.mui-bar~.mui-pull-top-tips {
+			top: 24px;
+		}
+		
+		.mui-pull-top-wrapper {
+			width: 42px;
+			height: 42px;
+			display: block;
+			text-align: center;
+			background-color: #efeff4;
+			border: 1px solid #ddd;
+			border-radius: 25px;
+			background-clip: padding-box;
+			box-shadow: 0 4px 10px #bbb;
+			overflow: hidden;
+		}
+		
+		.mui-pull-top-tips.mui-transitioning {
+			-webkit-transition-duration: 200ms;
+			transition-duration: 200ms;
+		}
+		
+		.mui-pull-top-tips .mui-pull-loading {
+			/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+			margin: 0;
+		}
+		
+		.mui-pull-top-wrapper .mui-icon,
+		.mui-pull-top-wrapper .mui-spinner {
+			margin-top: 7px;
+		}
+		
+		.mui-pull-top-wrapper .mui-icon.mui-reverse {
+			/*-webkit-transform: rotate(180deg) translateZ(0);*/
+		}
+		
+		.mui-pull-bottom-tips {
+			text-align: center;
+			background-color: #efeff4;
+			font-size: 15px;
+			line-height: 40px;
+			color: #777;
+		}
+		
+		.mui-pull-top-canvas {
+			overflow: hidden;
+			background-color: #fafafa;
+			border-radius: 40px;
+			box-shadow: 0 4px 10px #bbb;
+			width: 40px;
+			height: 40px;
+			margin: 0 auto;
+		}
+		
+		.mui-pull-top-canvas canvas {
+			width: 40px;
+		}
+		
+		.mui-slider-indicator.mui-segmented-control {
+			background-color: #efeff4;
+		}
+		
+		.mui-segmented-control.mui-scroll-wrapper .mui-scroll {
+			width: 100%;
+		}
+		#addBtn{
+			font-size: 34px;
+			padding-top: 5px;
+		}
+	</style>
+
+	<body>
+		
+		<!--header begin-->
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">活动</h1>
+			<span class="mui-icon mui-icon-plusempty mui-spin mui-pull-right" id="addBtn"></span>
+		</header>
+		<!--header end-->
+
+		<!--footer begin-->
+		<footer id="navFooter" class="m-footer"></footer>
+		<div class="indicatorMask"></div>
+		<!--footer end-->
+
+		<!--content begin-->
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+						<a class="mui-control-item mui-active" href="#item1mobile">
+							报名中的活动
+						</a>
+						<a class="mui-control-item" href="#item2mobile">
+							已截止的活动
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="activityList">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="activityListOutdate">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--content end-->
+
+		<!--活动模板 begin-->
+		<template id="activityListTmpl">
+			{{each list item}}
+			<li data-target="activityDetail" data-page-id="{{item.id}}" class="mui-table-view-cell">
+				<div class="mui-card">
+					<div class="mui-card-header mui-card-media" style="height:40vw;background-image:url({{picHost +item.poster}})" data-page-id="{{item.id}}"></div>
+					<div class="mui-card-content">
+						<div class="mui-card-content-inner">
+							<p style="color: #333;">{{item.title}}</p>
+							<p>活动开始：<span>{{item.activityStart}}</span></p>
+							<p>活动截止：<span>{{item.activityEnd }}</span></p>
+						</div>
+					</div>
+					<div class="mui-card-footer">
+						<a class="mui-card-link" data-page-id="{{item.id}}" data-target="nameList" data-creater="{{item.isCreater}}">名单</a>
+						<a class="mui-card-link" data-page-id="{{item.id}}" data-target="scanCode" data-creater="{{item.isCreater}}">扫码签到</a>
+						<a class="mui-card-link" data-page-id="{{item.id}}" data-target="editActivity" data-creater="{{item.isCreater}}" data-act-start="{{item.activityStart}}">编辑</a>
+						<a class="mui-card-link" data-page-id="{{item.id}}" data-target="deleteActivity" data-creater="{{item.isCreater}}" data-act-start="{{item.activityStart}}" data-act-end="{{item.activityEnd}}">删除</a>
+					</div>
+				</div>
+			</li>
+			{{/each}}
+		</template>
+
+		<script src="../../lib/mui.min.js"></script>
+		<script src="../../lib/arttemplate.js"></script>
+		<script src="../../lib/arttemplate-filter.js"></script>
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src="../../assets/js/page/navbar.js"></script>
+		<script src="../../lib/mui.pullToRefresh.js"></script>
+		<script src="../../lib/mui.pullToRefresh.material.js"></script>
+		<!--<script src="../../assets/js/page/application.js"></script>-->
+		<script>
+			mui.init({
+				keyEventBind: {
+					backbutton: false //取消监听返回键
+				}
+			});
+
+			//阻尼系数
+			var deceleration = mui.os.ios ? 0.003 : 0.0009;
+			mui('.mui-scroll-wrapper').scroll({
+				bounce: false,
+				indicators: true, //是否显示滚动条
+				deceleration: deceleration
+			});
+			
+			var ui={
+				activityList: document.getElementById("activityList"),
+				activityListOutdate: document.getElementById("activityListOutdate")
+			}
+			
+			function initActivity(dom,num,self){
+				console.log("获取活动列表前")
+				window.dataUtil.getActivityList('',num, function(res) {
+					console.log('===活动列表===' + JSON.stringify(res));
+					if(res.SystemCode == 1) { //请求活动列表成功
+
+						//页面数据渲染
+						if(res.data.varList && res.data.varList.length) {
+							ui[dom].innerHTML = template('activityListTmpl', {
+								list: res.data.varList,
+								picHost: window.IMAGE_GET_CONFIG
+							})
+						} else {
+							ui[dom].innerHTML = '<div class="no-data" style="margin-top: 160px;width:100%;height:100%;"><img src="../../assets/images/404/no-data.png" style="width: 200px;height: 150px;"/><div>暂时没有数据</div></div>';
+						}
+
+					} else {
+						mui.toast(window.ERROR_CONFIG[res.SystemCode]);
+					}
+					if(self){
+						self.endPullDownToRefresh();
+					}
+					
+				}, function(xhr, type, err) {
+					mui.toast('服务器异常，请稍后重试');
+					if(self){
+						self.endPullDownToRefresh();
+					}
+				})
+			}
+
+			mui.plusReady(function() {
+				//循环初始化所有下拉刷新，上拉加载。
+				initActivity("activityList",0);
+				initActivity("activityListOutdate",1);
+				
+				mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+					if(index==0){
+						mui(pullRefreshEl).pullToRefresh({
+							down: {
+								auto: true,
+								color: '#0989b6',
+								callback: function() {
+									var self = this;
+									initActivity("activityList",0,self);
+								}
+							}
+	
+						});
+					}else if(index==1){
+						mui(pullRefreshEl).pullToRefresh({
+							down: {
+								auto: true,
+								color: '#0989b6',
+								callback: function() {
+									var self = this;
+									initActivity("activityListOutdate",1,self);
+								}
+							}
+	
+						});
+					}
+					
+				});
+				
+				
+				mui('.mui-table-view').on('tap','.mui-card-link',function(){
+					var target=this.dataset.target;
+					var id=this.dataset.pageId;
+					var creater=this.dataset.creater;
+					var actStart=this.dataset.actStart;
+					var actEnd=this.dataset.actEnd;
+					console.log(creater+''+creater)
+					switch(target){
+						case "nameList":
+						
+						window.webviewUtil.show('nameList',null,null,null,{
+							actId:id
+						})
+						break;
+						case "scanCode":
+						if(creater!="0"){
+							window.webviewUtil.show('scanCode',null,null,null,{
+								actId:id
+							})
+						}else{
+							mui.toast("您没有扫码权限");
+						}
+						break;
+						case "editActivity":
+						if(creater!="0"){
+							if(new Date(actStart.replace(/-/g,  "/")).getTime()<new Date().getTime()){
+								mui.toast("活动已开始，不能编辑该活动");
+							}else{
+								window.webviewUtil.show('editActivity',null,null,null,{
+									actId:id
+								})
+							}
+							
+						}else{
+							mui.toast("您没有编辑权限");
+						}
+						break;
+						case "deleteActivity":
+						if(new Date(actEnd.replace(/-/g,  "/")).getTime()<new Date().getTime()){
+							mui.confirm('确定要删除该活动吗？',"提示",function(e){
+								if(e.index==1){
+									window.dataUtil.deleteActivity(id, function(res) {
+										console.log('===删除活动===' + JSON.stringify(res));
+										if(res.data.SystemCode == 1) {
+											mui.toast('删除成功')
+											initActivity("activityList",0);
+											initActivity("activityListOutdate",1);
+										} else {
+											mui.toast(window.ERROR_CONFIG[res.data.SystemCode]);
+										}
+									}, function(xhr, type, err) {
+										mui.toast('获取活动信息失败，请稍后重试')
+									})	
+								}
+								
+								
+							})
+						}else{
+							if(new Date(actStart.replace(/-/g,  "/")).getTime()<new Date().getTime()){
+								mui.toast("活动已开始，不能删除该活动");
+							}else{
+								mui.confirm('确定要删除该活动吗？',"提示",function(e){
+									if(e.index==1){
+										window.dataUtil.deleteActivity(id, function(res) {
+											console.log('===删除活动===' + JSON.stringify(res));
+											if(res.data.SystemCode == 1) {
+												mui.toast('删除成功')
+												initActivity("activityList",0);
+												initActivity("activityListOutdate",1);
+											} else {
+												mui.toast(window.ERROR_CONFIG[res.data.SystemCode]);
+											}
+										}, function(xhr, type, err) {
+											mui.toast('获取活动信息失败，请稍后重试')
+										})	
+									}
+									
+									
+								})
+							}
+							
+						}
+						
+						
+						break;
+					}
+				})
+				
+				document.getElementById("addBtn").addEventListener("tap",function(){
+					window.webviewUtil.show("editActivity",null,null,null,null)
+				})
+				
+				mui('.mui-table-view').on('tap','.mui-card-header',function(){
+					var id=this.dataset.pageId;
+					window.webviewUtil.show('activityNewDetail',null,null,null,{
+						pageId:id
+					})
+				})
+				window.addEventListener("addSuccess",function(){
+					console.log("addSuccess");
+					initActivity("activityList",0);
+				})
+			});
+			//			mui.plusReady(function() {
+			//				applicationIdx.init();
+			//
+			//			})
+		</script>
+	</body>
+
+</html>

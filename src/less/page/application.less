@@ -1,0 +1,139 @@
+@import '../app.less';
+.g-application {
+    //应用面板
+    .m-banner {
+        width: 100%;
+        height: 329px;
+        background: url(@application-banner);
+        background-size: 100%;
+         background-repeat:no-repeat ;
+    }
+    .m-banner-njqc {
+        background-color: #FFFFFF;
+        background-image: url(@application-banner-2);
+        background-size: 100%;
+         background-repeat:no-repeat ;
+    }
+    @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+        //iPhone x 适配
+        .m-banner {
+            width: 100%;
+            height: 450px;
+            background: url(@application-banner);
+            background-size: 100% 100%;
+            background-repeat:no-repeat ;
+        }
+        .m-banner-njqc {
+            background-color: #FFFFFF;
+            background-image: url(@application-banner-2);
+            background-size: 100% 100%;
+            background-repeat:no-repeat ;
+        }
+    }
+    .m-panel {
+        padding: 18px 20px;
+        .m-panel-row {
+            display: -webkit-box;
+            .u-panel-item {
+                -webkit-box-flex: 1;
+                text-align: center;
+                margin-bottom: 10px;
+                width: 230px;
+                height: 230px;
+                background: #FFFFFF;
+                border-radius: 8px;
+                img {
+                    width: 100px;
+                    height: 100px;
+                    margin-top: 36px;
+                }
+                .u-appel-tab {
+                    color: #585858;
+                    .u-tab-label {
+                        height: 30px;
+                        line-height: 30px;
+                        font-size: 26px;
+                        font-weight: bold;
+                        display: block;
+                    }
+                    .english {
+                        font-weight: normal;
+                        font-size: 24px;
+                    }
+                }
+            }
+            .u-panel-item:nth-child(2) {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            .u-panel-item-youth img {
+                width: 10vw;
+                height: 100px;
+            }
+            .u-weather {
+                width: 66.2%;
+                margin-right: 0 !important;
+                color: @mainColor !important;
+                .no-weather {
+                    font-size: 26px;
+                    padding-top: 100px;
+                    text-align: center;
+                }
+                .u-weather-left,
+                .u-weather-right {
+                    height: 100%;
+                    width: 30%;
+                    float: left;
+                    padding-left: 40px;
+                }
+                .u-weather-left {
+                    padding-top: 50px;
+                    span {
+                        font-size: 40px;
+                        font-weight: bolder;
+                        line-height: 40px;
+                    }
+                    img {
+                        width: 75px;
+                        height: 75px;
+                        margin: 10px;
+                    }
+                }
+                .u-weather-right {
+                    width: 70%;
+                    padding-right: 20px;
+                    padding-top: 40px;
+                    .u-right-top {
+                        background: url(@application-location) no-repeat;
+                        background-size: 22px 22px;
+                        background-position: left center;
+                        height: 50px;
+                        text-align: left;
+                        padding-left: 24px;
+                        .city {
+                            font-size: 22px;
+                        }
+                        .area {
+                            font-size: 28px;
+                            font-weight: 600;
+                        }
+                    }
+                    .u-right-bottom {
+                        display: -webkit-box;
+                        .u-weather-little {
+                            -webkit-box-flex: 1;
+                            .date {
+                                font-size: 18px;
+                            }
+                            img {
+                                width: 30px;
+                                height: 30px;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

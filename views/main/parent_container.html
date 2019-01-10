@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页父容器</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		
+				
+		<script src="../../lib/mui.min.js"></script>
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src="../../lib/update.js"></script>
+		<script src="../../assets/js/page/main.js"></script>
+		<script>
+			mui.init({
+//				keyEventBind:{
+//					backbutton:false //取消监听返回键
+//				}
+			});
+			mui.plusReady(function(){
+				function doubleTapBack () {
+					//首次按键，提示‘再按一次退出应用’
+                    if (!first) {
+                        first = new Date().getTime();
+                        mui.toast('再按一次退出应用');
+                        setTimeout(function() {
+                            first = null;
+                        }, 2000);
+                    } else {
+                        if (new Date().getTime() - first < 2000) {
+                            plus.runtime.quit();
+                        }
+                    }
+				}
+				var first = null;
+	            mui.back = function() {
+					doubleTapBack();
+	            };
+
+				plus.webview.currentWebview().setStyle({
+                    'popGesture': 'none'
+                });
+				Main.init();
+			});
+		</script>
+	</body>
+
+</html>

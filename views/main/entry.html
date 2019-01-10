@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>欢迎页面</title>
+		<link rel="stylesheet" type="text/css" href="../../assets/css/mui.min.css" />
+
+		<style type="text/css">
+			/*main {
+				flex-direction: column;
+				width: 100vw;
+				height: 100vh;
+				background: #fff;
+			}*/
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.bg_block {
+				/*flex: 1;*/
+				width: 100%;
+				height: 100%;
+				background: url('../../assets/images/main/hello_page_bg.png') no-repeat;
+				background-size: 100% 100%;
+			}
+			
+			@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+				.bg_block {
+					/*flex: 1;*/
+					width: 100%;
+					height: 100%;
+					background: url('../../assets/images/main/1125x2436.png') no-repeat;
+					background-size: 100% 100%;
+				}
+			}
+			
+			.btn_block {
+				position: fixed;
+				bottom: 10px;
+				left: 50%;
+				transform: translateX(-50%);
+				padding: 20px 0;
+			}
+			
+			.entry_btn {
+				margin: auto;
+				width: 300px;
+				height: 42px;
+				border-radius: 50px;
+				text-align: center;
+				line-height: 42px;
+				z-index: 9;
+				color: #fff;
+			    background: -webkit-gradient(linear, 100% 0, 0 0, from(#0989b6), to(#0989b6));
+			    background: -webkit-linear-gradient(to right, #0989b6, #0989b6);
+			    background: -moz-linear-gradient(to right, #0989b6, #0989b6);
+			    background: -o-linear-gradient(to right, #0989b6, #0989b6);
+			    background: linear-gradient(to right, #0989b6, #0989b6);
+			}
+			
+			.entry_btn:active {
+				background: linear-gradient(to right, rgba(86, 156, 255, .7), rgba(70, 187, 255, .7));
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<div class="bg_block">
+			<div id="btn_block" class="btn_block">
+				<div id="entryBtn" class="entry_btn">立即体验</div>
+			</div>
+		</div>
+
+		<script src="../../lib/mui.min.js"></script>
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: false
+			});
+			// 延迟进入到登录页
+			function toLoginPage(time) {
+				setTimeout(function() {
+					window.webviewUtil.show('login', null, null, null, null);
+				}, time);
+			}
+
+			mui.plusReady(function() {
+				plus.webview.currentWebview().setStyle({
+					'popGesture': 'none'
+				});
+				var isFirstEntry = plus.storage.getItem('firstEntry');
+				if(!isFirstEntry) { // 首次进入
+					document.getElementById('entryBtn').style.display = 'block';
+					document.getElementById('entryBtn').addEventListener('tap', function() {
+						toLoginPage(200);
+						plus.storage.setItem('firstEntry', '1');
+					});
+				} else { // 非首次进入
+					document.getElementById('entryBtn').style.display = 'none';
+					if(!plus.storage.getItem('userInfo')) { // 没有用户数据直接跳到登录页面
+						console.log('没有用户信息');
+						toLoginPage(1000);
+						return;
+					}
+					console.log('置换token开始');
+					// 旧token换新token 
+					window.dataUtil.tokenExchange(function(data) {
+						console.log('===以旧换新token===' + JSON.stringify(data));
+						console.log(typeof data)
+						if(data.SystemCode == 1) { // token没过期
+							var userInfo = JSON.parse(plus.storage.getItem('userInfo'));
+							userInfo.token = data.token;
+							console.log(JSON.stringify(userInfo));
+							plus.storage.setItem('userInfo', JSON.stringify(userInfo));
+							mui.openWindow({
+								url: 'parent_container.html',
+								id: 'main',
+								show: {
+									aniShow: 'fade-in'
+								},
+								extras: {
+									isChang: true
+								}
+							})
+
+						} else {
+							toLoginPage(1000);
+						}
+					}, function(xhr, type, err) {
+						console.log('===状态码===' + xhr.status + '===' + type + '====' + JSON.stringify(err));
+						toLoginPage(1000);
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

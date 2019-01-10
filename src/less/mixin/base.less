@@ -1,0 +1,134 @@
+/*
+
+ * 基础mixins
+ */
+
+/* 颜色 */
+@mainColor: #0989b6; //应用主色调
+@navTxtGrayColor: #8a8a8a;
+@mainColorActive: rgba(235, 58, 58, 0.7); //与主色调同色的按钮的点击active颜色
+@footShadowColor: rgba(235, 58, 58, 0.13); //主题颜色的阴影颜色
+@mainBgColor: #f1f1f1; //应用主体背景颜色
+@fontColorGray: #bfbfbf; //灰色字体——主要用于时间显示
+@borderColorGray: #CCCCCC; //灰色分割线
+
+@borderColor: rgb(238, 238, 238);
+
+@bgColor:#e7f1ff;
+/* 像素 */
+@mainTitleHeight: 56px; //主体面板头部高度
+@indexTitleHeight: 87px; //首页（圈子）头部高度
+@bottomNavbarMaxHeight: 74px; //首页底部导航栏的最大高度
+@paddingLeftRight: 10px; //页面内容区域左右间距
+
+///* 像素 */
+//@mainTitleHeight: 56px; //主体面板头部高度
+//@indexTitleHeight: 100px; //首页（圈子）头部高度
+//@bottomNavbarMaxHeight: 74px; //首页底部导航栏的最大高度
+//@paddingLeftRight: 10px; //页面内容区域左右间距
+///* 字体大小 */
+//@fontsize12: 12px;
+//@fontsize13: 13px;
+//@fontsize14: 14px;
+//@fontsize15: 15px;
+@fontsize16: 16px;
+//
+//#base{
+//  .title(){
+//      font-family: pingfang;
+//      color: #585858;
+//      font-size: 14px;
+//  }
+//  .subTitle(){
+//      font-family: pingfang;
+//      color: #585858;
+//      font-size: 13px;
+//  }
+//  .content(){
+//      font-family: pingfang;
+//      color: #B5B5B5;
+//      font-size: 12px;
+//  }
+//  .remark(){
+//      font-family: pingfang;
+//      color: #bfbfbf;
+//      font-size: 10px;
+//  }
+//}
+/* 清除浮动 */
+.f-clearfix {
+  display: block;
+  &:after {
+    display: block;
+    content: ".";
+    height: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+//文本段落超过三行溢出隐藏
+.f-ellipsis{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+.f-ellipsis-1{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+//一个像素的线条
+.border-1px(@color, @w: 100%) {
+  position: relative;
+  &::after {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: @w;
+    border-top: 1px solid @color;
+    content: '';
+    transform: scaleY(0.5);
+  }
+}
+
+//  红点
+.z-notice{
+    position: relative;
+    &::after{
+        content: "";
+        display: block;
+        position: absolute;
+        right: -12px;
+        top: -12px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: red;
+    }
+}
+//溢出隐藏
+.txtOverHide3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and 
+(-webkit-device-pixel-ratio: 3) { //iPhone x 适配
+    .mui-content {
+        padding-top: 85px !important;
+    }
+    #tab_bar {
+        height: 120px !important;
+    }
+    .mui-scroll {
+        padding-top: 0;
+    }
+}

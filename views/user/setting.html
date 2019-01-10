@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>设置</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/mui.min.css" />
+		<link rel="stylesheet" href="../../assets/css/page/iphoneX.css" />
+		<link rel="stylesheet" href="../../assets/css/page/user.css" />
+		<style type="text/css">
+			.mui-switch.mui-active {
+				background: #0989b6 !important;
+				border-color:  #0989b6 !important;
+			}
+			#quit{
+				background: #0989b6 !important;
+				border-color:  #0989b6 !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--header begin-->
+
+		<header class="mui-bar mui-bar-nav m-set-head">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title u-title">设置</h1>
+		</header>
+
+		<!--header end-->
+
+		<!--content begin-->
+		<div class="mui-content g-setting" style="display: none;">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="">版本信息
+						<span class="mui-pull-right">1.0.2</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell"  style="display: none;">
+					<a class="">手势密码
+						<div id="switch" class="mui-pull-right mui-switch mui-switch-mini">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</a>
+				</li>
+				<!--<li id="modifyPwd" class="mui-table-view-cell">
+					<a class="">修改密码
+						<span class="mui-navigate-right"></span>
+					</a>
+				</li>-->
+				<li id="privacy_act" class="mui-table-view-cell">
+					<a class="">隐私协议
+						<span class="mui-navigate-right"></span>
+					</a>
+				</li>
+			</ul>
+			<button id="quit" type="button" class="mui-btn mui-btn-danger mui-btn-block">退 出</button>
+		</div>
+		<!--content end-->
+
+		<script src="../../lib/mui.min.js"></script>
+		<script src="../../lib/jsencrypt.min.js"></script>
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src="../../assets/js/page/settings.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				settings.init();
+			})
+		</script>
+	</body>
+
+</html>

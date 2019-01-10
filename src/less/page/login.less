@@ -1,0 +1,230 @@
+@import '../app.less';
+
+html, body {
+    background-color: #FFFFFF;
+    .mui-content {
+        background: none;
+    }
+}
+body {
+    background: url(@login-app-background) no-repeat;
+    background-size: 100%;
+    .mui-content {
+        padding-top: 450px !important;
+        .g-password-login { //账号登录
+            .title {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 40px;
+                span {
+                    font-size: 40px;
+                    color: #0989b6;
+                    font-weight: bolder;
+                }
+                span.english {
+                    display: block;
+//                  margin-top: 20px;
+                    font-size: 20px;
+                    font-weight: normal;
+                }
+            }
+            .login-form {
+                width: 100%;
+                .m-user, .m-password, .m-phone, .m-pwd-confirm, .m-code, .m-pwd-tips {
+                    padding-left: 80px;
+                    width: 468px;
+                    height: 72px;
+                    margin: 0 auto 26px;
+                    background: url(@login-app-user) no-repeat;
+                    background-size: 44px;
+                     background-position: left center;
+                    border-bottom: 2px #b9b9b9 solid;
+                    input {
+                        border: none;
+                        height: 68px;
+                        margin: 0;
+                        padding: 0;
+                        font-size: 30px;
+                    }
+                }
+                .m-password {
+                    background:url(@login-app-password) no-repeat;
+                    background-size: 40px;
+                    background-position: left center;
+                }
+                .m-phone {
+                    background:url(@login-app-phone) no-repeat;
+                    background-size: 36px;
+                     background-position: left center;
+                }
+                .m-pwd-confirm {
+                    background:url(@login-app-password-sure) no-repeat;
+                    background-size: 40px;
+                     background-position: left center;
+                }
+                .m-code {
+                    background:url(@login-app-code) no-repeat;
+                    background-size: 40px;
+                    background-position: left center;
+                    input {
+                        width: 200px;
+                    }
+                    button {
+                        width: 160px;
+                        height: 60px;
+                        font-size: 24px;
+                        text-align: center;
+                        border-radius:30px ;
+                        padding: 12px 0;
+                    }
+                }
+                .m-pwd-tips {
+                    background: none;
+                    font-size: 20px;
+                    color: @fontColorGray;
+                    border: none;
+                    padding: 0;
+                    text-align: left;
+                    margin: 0 auto;
+                    height: 20px;
+                }
+                .m-student,.m-select {
+                    background: none;
+                    background-size:0 ;
+                    font-size: 30px;
+                    padding-left: 0;
+                    input {
+                        width:280px ;
+                    }
+                }
+                .m-select {
+                    background: url(@login-app-back) no-repeat !important;
+                    background-size:36px !important;
+                    background-position:right center !important; 
+                }
+                .u-btn-login {
+                    width: 468px;
+                    height: 72px;
+                    margin: 42px auto 0;
+                    padding: 0;
+                    line-height: 72px;
+                    color: #fff;
+                    border: none;
+                    background: linear-gradient(to right, #0989b6 , #0989b6) !important;
+                }
+            }
+            .m-shift {
+                font-size: 28px;
+                .link-area {
+                    text-align: center;
+                    color: #0989b6;
+                    .deliver-line {
+                        text-align: center;
+                        line-height: 28px;
+                        color: #CCCCCC;   
+                        width: 468px;
+                        margin: 0 auto;
+                        .hrLine {
+                            display: inline-block;
+                            width: 136px;
+                            vertical-align: middle; 
+                            background-color: #CCCCCC;
+                            height: 2px;
+                            border: none;              
+                        }   
+                    }
+                    img {
+                        width: 70px;
+                        height: 70px;
+                    }   
+                }
+                span.spliter {
+                    color: #000000;
+                }
+            }
+            .m-change {
+                margin-top:9vh ;
+            }
+            @media only screen and (device-width: 375px) and (device-height: 812px) and 
+(-webkit-device-pixel-ratio: 3) { //iPhone x 适配
+                .m-change {
+                    margin-top:25vh ;
+                }
+            }
+        }
+        
+        
+        .g-gesture-login {
+            display: none;
+             .title {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+                span {
+                    font-size: 36px;
+                    color: #eb3a3a;
+                    font-weight: bold;
+                }
+                span.english {
+                    display: block;
+//                  margin-top: 20px;
+                    font-size: 20px;
+                    font-weight: normal;
+                }
+            }
+            #holder {
+                margin: 0 auto;
+            }
+            .u-account {
+                width: 468px;
+                height: 72px;
+                margin: 0 auto;
+                position: fixed;
+                left: 50%;
+                bottom: 80px;
+                transform: translateX(-50%);
+                button {
+                    height: 60px;
+                    width: 320px;
+                    margin: 0 auto;
+                    line-height: 60px;
+                    border-radius:30px ;
+                    padding: 0;
+                    font-size: 26px;
+                }
+            }
+        }
+        
+        .g-tips {
+            width: 470px;
+            height: 300px;
+            margin: 160px auto;
+            background: url(@login-app-tips) no-repeat;
+            background-size:100% ;
+            .u-tips {
+                height: 60px;
+                font-size: 28px;
+                line-height:28px ;
+                color: #C0C0C0;
+                padding-top: 40px;
+                margin: 44px 50px 0 154px;
+            }
+            .u-tologin {
+                font-size: 34px;
+                line-height: 60px;
+                height: 60px;
+                border-radius:30px ;
+                text-align: center;
+                background: @mainColor;
+                border: 1px red solid;
+                font-weight: bold;
+                width: 150px;
+//              padding-top: 50px;
+                margin: 0 auto;
+                 color: #FFFFFF;
+                 margin-top: 130px;
+            }
+        }
+    }
+}
+

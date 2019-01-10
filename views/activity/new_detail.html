@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="kwy">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>活动详情</title>
+		<link rel="stylesheet" href="../../assets/css/mui.min.css" />
+		<link rel="stylesheet" href="../../assets/css/page/iphoneX.css" />
+		<link rel="stylesheet" href="../../assets/css/page/activity.css" />
+		<style>
+			.mui-plus .plus {
+				display: inline;
+			}
+			
+			.plus {
+				display: none;
+			}
+			
+			#topPopover {
+				top: 16px;
+				right: 6px;
+				position: absolute;
+			}
+			
+			#topPopover .mui-popover-arrow {
+				left: auto;
+				right: 6px;
+			}
+			
+			.mui-popover {
+				height: 55px;
+				width: 150px;
+			}
+			
+			.mui-backdrop {
+				position: fixed;
+				z-index: 998;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				background-color: rgba(0, 0, 0, 0);
+			}
+			
+			.mui-table-view-cell {
+				height: 50px;
+			}
+		</style>
+	</head>
+
+	<body>
+        
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<!--<a id="menu" class="mui-action-menu mui-icon mui-icon-star mui-pull-right" href="#topPopover">
+				<span style="font-size:10px;margin-left:-6px">收藏</span></a>-->
+			<h1 id="title" class="mui-title">活动详情</h1>
+		</header>
+		<div class="mui-content g-activity-detail">
+			<div id="detailContainer" class="m-info-box">
+
+			</div>
+		</div>
+		<div id="topPopover" class="mui-popover" class='top-popover'>
+		</div>
+		<template id="detailStateTmpl">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell collect-li" class="collect-box" id='collectLi'>
+							{{if detail.isCollect==0}}
+							<div class="u-func-favor " id="collectStar"></div>
+							<span class="collect-state" id="collectState">未收藏</span> {{/if}} {{if detail.isCollect==1}}
+							<div class="u-func-favor-active " id="collectStar"></div>
+							<span class="collect-state-active" id="collectState">已收藏</span> {{/if}}
+						</li>
+						<li class="mui-table-view-cell">
+
+						</li>
+					</ul>
+				</div>
+			</div>
+		</template>
+		<!--详情模板begin-->
+		<template id="detailContainerTmpl">
+			<div style="margin-bottom: 10px;">
+				<img  src="{{picHost + detail.poster}}" style="width:100%;height:240px"/>
+			</div>
+			<p class="activity-title">
+				{{detail.title}}
+			</p>
+			<p class="activity-info">
+				<!--<img class="user-img" src="{{picHost + detail.poster}}" />-->
+				<!--<span class="organ"><span style="color:#000000">主办方:</span>{{detail.activityHost}}</span>-->
+				<span class="time">{{detail.createDate | dateFormat}}</span>
+			</p>
+			<div class="mui-card activity-content">
+				<div class="mui-card-header mui-card-media content-box" style="color: #000000;">
+					{{@detail.content | parseNewLine }}
+				</div>
+				<div class="mui-card-content">
+					{{each detail.activityImg item}}
+					<img src="{{picHost + item}}" alt="" width="100%" />
+					{{/each}}
+					<div class="mui-card-content-inner activity-area">
+						{{if detail.activityType=="2"}}
+						<div>培训地点：<span>{{detail.address}}</span></div>
+						<div>培训时间：<span>{{@detail.activityStart | getDate }}-{{@detail.activityEnd | getDate }}</span></div>
+						<div>培训类别：<span>{{@detail.activityClassName}}培训</span></div>
+						{{/if}} {{if detail.activityType=="1"}}
+						<div>活动地点：<span>{{detail.address}}</span></div>
+						<div>活动时间：<span>{{@detail.activityStart | getDate }}-{{@detail.activityEnd | getDate }}</span></div>
+						<div>截止时间：<span>{{@detail.applyEnd | getDate }}</span></div>
+						{{/if}}
+						<!--<div class="activity-points">积分奖励：参与者都将获得<span>1000积分</span></div>-->
+					</div>
+				</div>
+
+			</div>
+
+			<div id="signUp" class="mui-bar mui-bar-tab activity-btn" data-id={{detail.id}} style="display:none">
+				我要报名
+			</div>
+
+		</template>
+
+		<!--详情模板end-->
+
+		<script src="../../lib/mui.min.js"></script>
+		<script src="../../lib/moment.min.js"></script>
+		<script src="../../lib/arttemplate.js"></script>
+		<script src="../../lib/arttemplate-filter.js"></script>
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src='../../assets/js/page/activity_new_detail.js'></script>
+
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				activityNewDetail.init();
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="kwy">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>活动</title>
+		<link rel="stylesheet" href="../../assets/css/mui.min.css" />
+		<link rel="stylesheet" href="../../assets/css/page/iphoneX.css"/>
+		<link rel="stylesheet" href="../../assets/css/page/activity.css" />
+		<style type="text/css">
+			.no-data {
+				background: #f1f1f1;font-size: 14px;text-align: center;
+			}
+			.no-data div {
+				color: #C0C0C0;
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">活动</h1>
+		</header>
+		<div class="mui-content mui-scroll-wrapper g-activity" id="listBlock">
+			<div class="mui-scroll m-scroll">
+				<ul class="mui-table-view m-scroll-ul" id="activityList"></ul>
+			</div>
+		</div>
+		<!--列表项模板-->
+		<template id="activityTemplate">
+			{{each acList item}}
+			<li class="mui-table-view-cell mui-media m-scroll-li" data-obj='{{item|json}}' data-idx='{{item.id}}'>
+				{{if item.poster!=""}}
+				<img class="mui-media-object mui-pull-left activity-img" src="{{item.poster}}">
+				{{/if}}
+				<div class="mui-media-body activity-info" >
+					<p class="mui-ellipsis activity-title-frist">{{item.title}}</p>
+					{{if item.isStart=="1"}}
+					<p class="state">进行中&nbsp;</p>
+					{{/if}}
+					{{if item.isStart=="2"}}
+					<p class="state">已结束&nbsp;</p>
+					{{/if}}
+					{{if item.isStart=="0"}}
+					<p class="state">未开始&nbsp;</p>
+					{{/if}}
+					<p class='item-time'>活动时间:<span>{{item.activityStart | getDate}}-{{item.activityEnd | getDate}}</span></p>
+					<p class='item-content'>{{@item.content | delTag2}}</p>
+				</div>
+			</li>
+            {{/each}}
+		</template>
+		<script src="../../lib/mui.min.js"></script>
+		<script src="../../lib/moment.min.js"></script>
+		<script src="../../lib/arttemplate.js"></script>
+		<script src="../../lib/arttemplate-filter.js"></script>
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src='../../assets/js/page/activity_list.js'></script>
+		<script>
+			mui.init({
+				pullRefresh: {
+					container: "#listBlock",
+					down: {
+						style: 'circle',
+						color: '#0989b6',
+						offset: '45px',
+						auto: true,
+						callback: function() {
+							activityList.activityIndexList(true);
+						}
+					},
+					up: {
+						contentrefresh: "正在加载...",
+						contentnomore: '没有更多数据了',
+						callback: function() {
+							activityList.activityIndexList(false);
+						}
+					}
+				}
+			});
+			mui.plusReady(function() {
+				activityList.init();
+			});
+		</script>
+	</body>
+
+</html>

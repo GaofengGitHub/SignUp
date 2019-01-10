@@ -1,0 +1,57 @@
+/*
+ * 全局样式
+ */
+
+@import './mixin/base.less';
+@import './mixin/image.less';
+@font-face {
+    font-family: pingfang;
+    font-weight: normal;
+    font-style: normal;
+    src: url('../../fonts/pingfang.ttf') format('truetype');
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+html,
+body,
+.mui-input-row label {
+    font-family: pingfang;
+}
+
+html,
+body,
+.mui-content {
+    background: @mainBgColor;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+        list-style: none;
+    }
+}
+
+.mui-bar {
+    background-color: @mainColor;
+    height: 88px;
+}
+
+.mui-bar,
+.mui-title {
+    color: #fff !important;
+}
+
+.mui-bar .mui-icon {
+    color: #fff !important;
+}
+
+.mui-table-view-cell.mui-active {
+    background: #FFFFFF;
+}

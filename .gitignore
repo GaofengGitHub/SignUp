@@ -1,0 +1,15 @@
+#忽略node包
+node_modules
+#忽略样式
+assets/css/page
+#忽略打包文件
+unpackage
+#忽略打包文件
+assets/js
+#项目文件
+.project
+#图片
+assets/images
+#项目文件
+manifest.json
+pageage-lock.json

@@ -1,0 +1,296 @@
+    @import '../app.less';
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+    
+    //活动列表
+    .g-activity {
+        // background:#F6F6F6;
+        .m-scroll {
+            padding: 24px 20px;
+            .m-scroll-ul:before,
+            .m-scroll-ul:after {
+                background-color: rgba(0, 0, 0, 0);
+            }
+            .m-scroll-ul {
+                border-radius: 15px;
+                background: rgba(0, 0, 0, 0);
+                .m-scroll-li:after {
+                    background-color: rgba(0, 0, 0, 0);
+                }
+                .m-scroll-li {
+                    box-shadow: 5px 5px 5px #f6eae6;
+                    background: #ffffff;
+                    border-radius: 15px;
+                    margin-bottom: 35px;
+                    position: relative;
+                    overflow: hidden;
+                    padding: 0px 0px;
+                    -webkit-touch-callout: none;
+                    .activity-img {
+                        height: 173px;
+                        width: 210px;
+                        max-width: 210px !important;
+                        border-bottom-left-radius: 12px;
+                        border-top-left-radius: 12px;
+                    }
+                    .activity-info {
+                        padding-top: 10px;
+                        margin-left: 10px;
+                        border: 0px solid #ccc;
+                        word-wrap: break-word;
+                        height: 173px !important;
+                        .activity-title-frist {
+                            width: 70%;
+                        }
+                        span {
+                            color: #515151;
+                            font-size: 28px;
+                            margin-bottom: 8px;
+                        }
+                        .state {
+                            position: absolute;
+                            font-size: 22px;
+                            color: #FF504E;
+                            top: 12px;
+                            right: 40px;
+                            font-weight: 800;
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                margin-top: 6px;
+                                margin-left: 1px;
+                                //                              top: 4px;
+                                //                              right: -6px;
+                                width: 4px;
+                                height: 28px;
+                                background: #FF504E;
+                            }
+                        }
+                        .item-time {
+                            font-size: 18px;
+                            span {
+                                color: #FF6B6B;
+                                font-size: 18px;
+                            }
+                        }
+                        .item-content {
+                            margin-top: 10px;
+                            font-size: 24px;
+                            line-height: 30px;
+                            height: 60px;
+                            width: 94.5%;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                            overflow: hidden;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    //苹果5适配
+    @media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+        .g-activity {
+            .m-scroll {
+                padding: 24px 20px;
+                .m-scroll-ul:before,
+                .m-scroll-ul:after {
+                    background-color: rgba(0, 0, 0, 0);
+                }
+                .m-scroll-ul {
+                    border-radius: 15px;
+                    background: rgba(0, 0, 0, 0);
+                    .m-scroll-li:after {
+                        background-color: rgba(0, 0, 0, 0);
+                    }
+                    .m-scroll-li {
+                        box-shadow: 5px 5px 5px #f6eae6;
+                        background: #ffffff;
+                        border-radius: 15px;
+                        margin-bottom: 35px;
+                        position: relative;
+                        overflow: hidden;
+                        padding: 0px 0px;
+                        -webkit-touch-callout: none;
+                        .activity-img {
+                            height: 173px;
+                            width: 210px;
+                            max-width: 210px !important;
+                            border-bottom-left-radius: 12px;
+                            border-top-left-radius: 12px;
+                        }
+                        .activity-info {
+                            padding-top: 10px;
+                            margin-left: 10px;
+                            border: 0px solid #ccc;
+                            word-wrap: break-word;
+                            height: 173px !important;
+                            .activity-title-frist {
+                                width: 70%;
+                            }
+                            span {
+                                color: #515151;
+                                font-size: 28px;
+                                margin-bottom: 8px;
+                            }
+                            .state {
+                                position: absolute;
+                                font-size: 22px;
+                                color: #FF504E;
+                                top: 12px;
+                                right: 40px;
+                                font-weight: 800;
+                                &:after {
+                                    content: "";
+                                    position: absolute;
+                                    margin-top: 10px;
+                                    margin-left: 1px;
+                                    width: 4px;
+                                    height: 28px;
+                                    background: #FF504E;
+                                }
+                            }
+                            .item-time {
+                                font-size: 18px;
+                                span {
+                                    color: #FF6B6B;
+                                    font-size: 18px;
+                                }
+                            }
+                            .item-content {
+                                margin-top: 2px;
+                                font-size: 24px;
+                                line-height: 30px;
+                                height: 60px;
+                                width: 94.5%;
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 2;
+                                overflow: hidden;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    //活动详情
+    .g-activity-detail {
+        height: 100%;
+        padding: 15px 44px;
+        .m-info-box {
+            margin-top: 15px;
+            height: 12%;
+            width: 100%;
+            
+            .activity-title {
+             
+                font-size: 30px;
+                color: #363636;
+                font-weight: 600;
+                text-align: center;
+            }
+            .activity-info {
+                position: relative;
+                border-bottom: 1px solid #dddddd;
+                .organ {
+                    color: #EB3A3A;
+                    font-size: 26px;
+                    display: inline-block;
+                    position: relative;
+                    //left: 4%;
+                }
+                .time {
+                    font-size: 26px;
+                    position: absolute;
+                    right: 2px;
+                }
+            }
+            .activity-content {
+                font-size: 14px;
+                position: relative;
+                overflow: hidden;
+                margin: 0px 10px 10px 10px;
+                border-radius: 2px;
+                background-color: rgba(0, 0, 0, 0);
+                background-clip: padding-box;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0);
+                .content-box {
+                   
+                    font-size: 28px !important;
+                    text-align: justify;
+                    text-justify: distribute-all-lines;
+                    img{
+                        width:100%;
+                    }
+                }
+                .activity-area {
+                    margin-top: -20px;
+                    padding-bottom: 150px;
+                }
+                .activity-area div {
+                    background: #ffffff;
+                }
+                .activity-points {
+                    //                  margin-top: 28px;
+                    span {
+                        color: #EB3A3A;
+                    }
+                }
+            }
+            .activity-btn {
+                text-align: center;
+                line-height: 90px;
+            }
+        }
+    }
+    
+    #topPopover {
+        .collect-box {
+            position: relative;
+        }
+        .collect-li {
+            position: relative;
+        }
+        .u-func-favor {
+            height: 50px;
+            width: 50px;
+            margin-top: -4px;
+            //          border: 1px solid #ccc;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background-image: url(@star-black);
+            background-size: cover;
+        }
+        .collect-state {
+            color: #000000;
+            position: absolute;
+            left: 80px;
+            top: 22px;
+        }
+        .collect-state-active {
+            color: #EB3A3A;
+            position: absolute;
+            left: 80px;
+            top: 22px;
+        }
+        .u-func-favor-active {
+            height: 50px;
+            width: 50px;
+            color: #EB3A3A;
+            margin-top: -4px;
+            //          border: 1px solid #ccc;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background-image: url(@star-red-active);
+            background-size: cover;
+        }
+    }

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>报名名单</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/mui.min.css" />
+		<link rel="stylesheet" href="../../assets/css/page/iphoneX.css" />
+		<link rel="stylesheet" href="../../assets/css/page/user.css" />
+		<link rel="stylesheet" href="../../assets/css/iconfont.css"/>
+		<style type="text/css">
+			.no-data {
+				background: #f1f1f1;
+				font-size: 14px;
+				text-align: center;
+			}
+			
+			.no-data div {
+				color: #C0C0C0;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<!--header begin-->
+         
+		<header class="mui-bar mui-bar-nav m-set-head">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>			
+		    <h1 class="mui-title u-title">报名名单</h1>
+		</header>
+
+		<!--header end-->
+
+		<!--content begin-->
+		<div class="mui-content g-my-suggest" id="flistBlock">
+			<div id="suggestContent" class="u-up">
+				<!--这里放置真实显示的DOM内容-->
+				
+			</div>
+		</div>
+		<!--content end-->
+		
+		<!--列表模板 begin-->
+		<template id="suggestContentTmpl">
+			{{each List item}}
+			<div>
+				<p>{{item.applyTime}}</p>
+				<div class="u-text" readonly="readonly" style="overflow: hidden;">
+					{{if item.userName != ''}}
+					<div style="float: right;">{{item.userName}} | {{if item.status == 2}}已签到{{else}}未签到{{/if}}</div>
+					{{else}}
+					<div style="float: right;">匿名用户 | {{if item.status == 2}}已签到{{else}}未签到{{/if}}</div>
+					{{/if}}
+					{{if item.userPhone!= "0" }}
+					<div >{{item.userPhone}}</div>
+					{{else}}
+					<div >无联系方式</div>
+					{{/if}}
+					
+				</div>
+			</div>
+			{{/each}}
+		</template>
+		<!--列表模板 end-->
+		
+		<script src="../../lib/mui.min.js"></script>
+		<script src="../../lib/arttemplate.js"></script>
+		<script src="../../lib/arttemplate-filter.js"></script>		
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src="../../lib/mui.pullToRefresh.js"></script>
+		<script src="../../lib/mui.pullToRefresh.material.js"></script>
+		<script src="../../assets/js/page/name_list.js"></script>
+		<script>
+			
+			mui.init({
+				pullRefresh: {
+					container: "#flistBlock",
+					down: {
+						style: 'circle',
+						color: '#0989b6',
+						offset: '45px',
+						auto: true,
+						callback: function() {
+							getNameList.nameList(true);
+						}
+					},
+					up: {
+						contentrefresh: "正在加载...",
+						contentnomore: '没有更多数据了',
+						callback: function() {
+							getNameList.nameList(false);
+						}
+					}
+				}
+			});
+			mui.plusReady(function(){
+				getNameList.init();
+			});
+		</script>
+	</body>
+</html>

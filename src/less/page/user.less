@@ -1,0 +1,552 @@
+/*
+ * 说明：user我的
+ * 创建人：lj
+ * 创建时间：2018/3/13 14:30
+ * 修改人：lj
+ * 修改时间：2018/3/13 14:30
+ */
+
+@import '../app.less';
+//用户登录 一级页面
+.user-management-system {
+    .user-admin {
+        width: 100%;
+        height: 288px;
+        float: left;
+        background: url(@user-bg) no-repeat;
+        background-size: 100% 100%;
+        .u-profile {
+            float: left;
+            margin-left: 36px;
+            margin-top: 80px;
+            height: 126px;
+            width: 126px;
+            overflow: hidden;
+            border-radius: 50%;
+            //          border: 1px solid black;
+            .user-profile {
+                height: 126px;
+                width: 126px;
+            }
+        }
+        .user-grade {
+            float: left;
+            margin-left: 40px;
+            margin-top: 104px;
+//          width: 220px;
+            .eng {
+                font-size: 30px;
+                color: #fff;
+                font-weight: bold;
+                width: auto;
+            }
+            .cha {
+                font-size: 20px;
+                margin-top: -10px;
+                color: #fff;
+            }
+        }
+        .user-code {
+            float: right;
+            margin-right: 42px;
+            margin-top: 90px;
+            height: 136px;
+            width: 136px;
+        }
+    }
+    //用户管理
+    .user-management {
+        width: 96.2%;
+        height: 100%;
+        padding: 16px 20px;
+        background-color: #FFFFFF;
+        float: left;
+        margin: 16px;
+    }
+    .user-management ul li {
+        float: left;
+        list-style: none;
+        height: 122px;
+        line-height: 122px;
+        border-bottom: 4px solid #e5e5e5;
+        width: 100%;
+        position: relative;
+        color: #5d5d5d;
+        font-size: 28px;
+        background: url(@user-return-icon) no-repeat;
+        background-size: 30px 30px;
+        background-position: 650px center;
+        .user-icon {
+            background-repeat: no-repeat;
+            background-size: 60px 60px;
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+        }
+        .user-info {
+            background-image: url(@user-info-icon);
+        }
+        .user-comment {
+            background-image: url(@user-comment-icon);
+        }
+        .user-collect {
+            background-image: url(@user-collect-icon);
+        }
+        .user-advice {
+            background-image: url(@user-advice-icon);
+        }
+        .user-setting {
+            background-image: url(@user-setting-icon);
+        }
+        span {
+            position: absolute;
+            display: block;
+            left: 82px;
+        }
+    }
+    .border-fix {
+        border-bottom-color: #FFFFFF !important;
+    }
+}
+
+//iphone5适配
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+    .user-management-system {
+        margin-top: -24px;
+    }
+    .user-management-system .user-admin .user-grade {
+        width: 300px;
+    }
+}
+
+//iPhone x 适配    
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    .user-management-system {
+        margin-top: -68px;
+    }
+}
+
+//修改密码 password
+//头部
+.m-pw-head {
+    .u-left,
+    .u-right {
+        color: #FFFFFF;
+        margin-top: 20px;
+        font-size: 28px;
+        padding: 4px 20px;
+    }
+}
+
+//样式入口
+.g-password {
+    //修改密码表单
+    .m-form {
+        margin: 15px;
+        //      border-bottom: 1px solid #FFFFFF;
+        .mui-input-row {
+            height: 120px;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            font-size: 28px;
+            label {
+                font-weight: bold;
+                line-height: 80px;
+                padding: 11px 10px;
+            }
+            input {
+                //          border: 1px solid red;
+                font-size: 28px;
+                margin-right: 100px;
+                width: 100%;
+            }
+        }
+    }
+    //友情提示
+    .m-tip {
+        margin: 15px;
+        font-size: 32px;
+        //  border: 1px solid red;
+        p {
+            color: #434343;
+        }
+        a {
+            color: red;
+        }
+    }
+    //placeholder 文字颜色
+     ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: #b0b0b0;
+    }
+     :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #b0b0b0;
+    }
+     ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #b0b0b0;
+    }
+     :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: #b0b0b0;
+    }
+    .mui-input-group:before,
+    .mui-input-group:after {
+        background-color: #FFFFFF;
+    }
+    //input-row边线       
+    .mui-input-group .mui-input-row {
+        width: 96%;
+    }
+}
+
+//设置
+//样式入口
+.g-setting {
+    * {
+        -webkit-tap-highlight-color: #FFFFFF;
+    }
+    margin-top: 0px;
+    .mui-table-view {
+        margin: 0px 15px 0px 15px;
+        padding-right: 20px;
+        .mui-table-view-cell {
+            font-size: 28px;
+            color: #484848;
+            height: 120px;
+            line-height: 80px;
+        }
+    }
+    .mui-table-view:before,
+    .mui-table-view:after {
+        background-color: #FFFFFF;
+    }
+    .mui-table-view-cell {
+        &:after {
+            right: 30px;
+            left: 30px;
+        }
+    }
+    #quit {
+        width: 720px;
+        height: 100px;
+        margin: 60px auto;
+    }
+}
+
+//iphone5适配
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+    .g-setting {
+        margin-top: -30px;
+    }
+}
+
+//我的反馈
+//样式入口
+.g-my-suggest {
+    //  margin-top: 22px;
+    .date {
+        margin: 0 auto;
+        width: 310px;
+        height: 65px;
+        background-color: #e3e3e3;
+        border-radius: 65px;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        line-height: 60px;
+        font-size: 22px;
+        color: #5D5D5D;
+    }
+//  p:first-child {
+//      margin-top: 26px;
+//  }
+    .u-text {
+        margin: 0 auto;
+        padding: 12px;
+        width: 80%;
+        display: block;
+        font-size: 28px;
+        line-height: 40px;
+        background-color: #FFFFFF;
+        border-radius: 8px;
+        p {
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+//iphone5适配
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+    .g-my-suggest {
+        margin-top: -20px;
+    }
+}
+
+//我的评论
+//样式入口
+.g-my-comment {
+    margin-top: -14px;
+    .mui-row {
+        //      border: 1px solid red;
+//      background-color: #FFFFFF;
+//      margin-top: 15px;
+//      height: 26vw;
+//      display: -webkit-flex;
+//      display: flex;
+//      -webkit-align-items: center;
+//      align-items: center;
+//      -webkit-justify-content: center;
+//      justify-content: center;
+        .pro-img {
+            width: 90px;
+            height:90px;
+            margin: 0 0 0 15px;
+            border-radius:50% ;
+        }
+        .middle-content p:first-child {
+            color: #eb4242;
+            width: 90%;
+            margin-bottom: 0px;
+            font-size: 26px;
+        }
+        .middle-content p:nth-child(2) {
+            font-size: 16px;
+            color: #4d4d4d;
+        }
+        .right-titl p:first-child {
+            color: #686868;
+            font-weight: bold;
+//          line-height: 32px;
+            margin-top: 30px;
+        }
+        .right-titl p:nth-child(2) {
+            font-size: 16px;
+            color: #4d4d4d;
+            margin-top: -20px;
+        }
+    }
+    .g-my-comment .mui-row .right-titl p {
+        margin-bottom: 0px;
+    }
+}
+.u-row{
+    background-color: #FFFFFF;
+        margin-top: 15px;
+        height: 26vw;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+}
+//iphone5适配
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+    .g-my-comment {
+        margin-top: -30px;
+        .right-titl p:first-child {
+            font-size: 16px;
+        }
+        .middle-content p:first-child {
+            font-size: 16px;
+        }
+    }
+}
+
+//我的收藏
+//样式入口
+.g-my-collect {
+//  margin-top: -10px;
+    .mui-card {
+        margin: 10px 0 0 0;
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        .mui-media-body {
+            font-size: 16px;
+            p:first-child {
+                color: #DD524D;
+                font-weight: bold;
+            }
+            p:nth-child(2) {
+                font-size: 16px;
+                color: #5D5D5D;
+                //              width: 94%;
+            }
+        }
+    }
+    //sec card
+    .mui-card-content {
+        margin-left: 110px;
+        p:first-child {
+            color: #5D5D5D;
+            font-weight: bold;
+            font-size: 32px;
+        }
+        p:nth-child(2) {
+            font-size: 28px;
+            margin-top: -16px;
+            color: #5D5D5D;
+            //              width: 94%;                
+        }
+        img {
+            width: 560px;
+            height: 200px;
+        }
+    }
+    //third card
+    .video {
+        width: 160px;
+        height: 160px;
+        background: url(../../../assets/images/space/view-one.png) no-repeat;
+        border-radius: 8px;
+        margin-bottom: 40px;
+    }
+    .mui-card-footer:before,
+    .mui-card-header:after {
+        background-color: #FFFFFF;
+    }
+    .g-my-collect .mui-card-content {
+        margin-top: -10px;
+    }
+    .col-date {
+        &:after {
+            content: "";
+            position: absolute;
+            margin-top: 4px;
+            margin-left: 1px;
+            width: 4px;
+            height: 20px;
+            background: #FF504E;
+        }
+    }
+    .mui-content>.mui-card:first-child {
+        margin-top: 0px;
+    }
+    .card-pic {
+        border-radius: 50%;
+    }
+}
+
+//iphone5适配
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+    .g-my-collect {
+        margin-top: -50px;
+        .mui-card-content {
+            margin-left: 126px;
+            margin-top: -20px;
+            p:first-child {
+                color: #5D5D5D;
+                font-weight: bold;
+                font-size: 32px;
+            }
+            p:nth-child(2) {
+                font-size: 28px;
+                margin-top: -26px;
+                color: #5D5D5D;
+                width: 98%;
+            }
+        }
+        .col-date {
+            &:after {
+                content: "";
+                position: absolute;
+                margin-top: 6px;
+                margin-left: 1px;
+                width: 4px;
+                height: 26px;
+                background: #FF504E;
+            }
+        }
+    }
+}
+
+//意见反馈
+//样式入口
+.g-my-feedback {
+    text-align: center;
+    textarea {
+        margin: 0 auto;
+        width: 90%;
+        display: block;
+        border: 1px solid rgba(0, 0, 0, 0);
+        margin-top: 22px;
+        font-size: 28px;
+        width: 95%;
+    }
+    button {
+        background-color: #EB3A3A;
+        font-size: 30px;
+        border-radius: 30px;
+        margin-top: 40px;
+        border: 1px solid #EB3A3A; 
+    }
+}
+
+//iphone5适配
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+    .g-my-feedback {
+        margin-top: -20px;
+    }
+}
+
+//设置密码
+.m-form {
+    padding-right: 30px;
+}
+
+.g-password .mui-input-group .mui-input-row {
+    width: 100%;
+    position: relative;
+    input {
+        margin-right: 0;
+    }
+    button {
+        position: absolute;
+        line-height: 60px;
+        width: 160px;
+        padding:0 ;
+        right: 0;
+        top: 30px;
+        height: 60px;
+        font-size: 24px;
+        text-align: center;
+        border-radius: 30px;
+    }
+}
+
+//iphone5适配
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+    .g-password {
+        margin-top: -24px;
+    }
+}
+
+//手势密码设置页面
+.mui-content.page-reset-gesture {
+    padding: 60px 16px 16px;
+    font-weight: 900;
+    .content {
+        padding-top: 42px;
+        border-radius: 6px;
+        background: #fff;
+        .alertTip {
+            font-size: 32px;
+            line-height: 32px;
+            height: 32px;
+            text-align: center;
+            color: @mainColor;
+        }
+        .mui-locker {
+            margin: 72px auto 0;
+        }
+    }
+}

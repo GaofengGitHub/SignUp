@@ -1,0 +1,252 @@
+            @import '../app.less';
+    //我的中队首页
+    .g-squadron {
+        border-radius: 15px;
+        .m-squadron-list {
+            padding-bottom: 20px;
+            .u-name {
+                height: 120px;
+                .publish-info {
+                    .role {
+                        font-size: 28px;
+                        color: #343434;
+                        font-weight: 800;
+                        margin-left: 18px;
+                        margin-top: 4px;
+                    }
+                    .publish-time {
+                        font-size: 20px;
+                        margin-top: 10px;
+                        margin-left: 18px;
+                    }
+                }
+                .img-left {
+                    height: 80px;
+                    width: 80px;
+                    border-radius: 5px;
+                }
+            }
+            .u-content {
+                .content-info {
+                    font-size: 28px;
+                    color: #313131;
+                    //                  text-indent: 2em;
+                    //                  text-align: justify;
+                    text-justify: distribute-all-lines;
+                }
+                .squadron-img-box {
+                    margin: 0 auto;
+                    border: 0px solid #ccc;
+                    padding-left: 6.2%;
+                    img {
+                        border-radius: 10px;
+                        height: 200px;
+                        width: 200px;
+                    }
+                }
+            }
+            .u-handle {
+                height: 76px;
+                border: 0px solid #ccc;
+                .hang-img-box {
+                    border: 0px solid #ccc;
+                    display: inline-block;
+                    height: 70px;
+                    margin-left: 570px;
+                    width: 110px;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    span {
+                        display: inline-block;
+                        height: 40px;
+                        text-align: center;
+                        line-height: 40px;
+                    }
+                    .squadron-edit {
+                        background: url(@squadron-edit);
+                        background-size: 100% 100%;
+                        height: 40px;
+                        width: 40px;
+                    }
+                    .squadron-edit-active {
+                        background: url(@squadron-edit-active);
+                        background-size: 100% 100%;
+                        height: 40px;
+                        width: 40px;
+                    }
+                    .squadron-appreciate {
+                        background: url(@squadron-appreciate);
+                        background-size: 100% 100%;
+                        height: 40px;
+                        width: 40px;
+                    }
+                    .squadron-appreciate-active {
+                        background: url(@squadron-appreciate-active);
+                        background-size: 100% 100%;
+                        height: 40px;
+                        width: 40px;
+                    }
+                    img {
+                        height: 40px;
+                    }
+                }
+            }
+            .u-disscuss-pub {
+                margin: 4px auto;
+                background: #F6F6F6;
+                border-radius: 10px;
+                width: 88%;
+                padding: 16px 22px;
+                .disscuss-top {
+                    position: relative;
+                    .disscuss-appreciate {
+                        position: absolute;
+                        top: 10px;
+                        height: 36px;
+                        width: 36px;
+                    }
+                    .person-box {
+                        display: inline-block;
+                        margin-left: 50px;
+                        width: 92%;
+                        border: 0px solid #ccc;
+                        margin-top: 10px;
+                        span {
+                            font-size: 24px;
+                            font-weight: 800;
+                        }
+                    }
+                }
+                .disscuss-bottom {
+                    position: relative;
+                    .disscuss-edit {
+                        position: absolute;
+                        top: 10px;
+                        height: 36px;
+                        width: 36px;
+                    }
+                    .edit-box {
+                        display: inline-block;
+                        margin-left: 50px;
+                        width: 92%;
+                        border: 0px solid #ccc;
+                        margin-top: 10px;
+                        div {
+                            font-size: 24px;
+                            font-weight: 600;
+                            span {
+                                color: #959595;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    //添加评论
+    .disscuss-publish {
+        font-size: 18px !important;
+        line-height: 50px;
+    }
+    
+    //添加圈子
+    .m-add-circle {
+        width: 95%;
+        margin: 10px auto;
+        background: #fff;
+        border-radius: 5px;
+        textarea {
+            height: 200px;
+            border: none;
+            border-bottom: 1px solid #eee;
+            width: 95%;
+            margin: 5px auto;
+            display: block;
+        }
+        .publish-circle-photo-list {
+            margin: 0 auto;
+            padding: 0;
+            padding-top: .5rem;
+            width: 90%;
+            min-height: 5rem;
+            li {
+                height: 4rem;
+                width: 4rem;
+                padding: 0;
+                margin-left: .1rem;
+                margin-right: .5rem;
+                margin-bottom: .5rem;
+                list-style: none;
+                float: left;
+                position: relative;
+                img {
+                    height: 4rem;
+                    width: 4rem;
+                    border-radius: 8px;
+                }
+                .publish-circle-photo-list .icon-remove {
+                    position: absolute;
+                    top: 3px;
+                    right: 3px;
+                    color: red;
+                }
+                .icon-remove {
+                    width: 30%;
+                    height: 30%;
+                    position: absolute;
+                    top: -5px;
+                    right: -5px;
+                    background-color: none!important;
+                    z-index: 1000;
+                }
+                .publish-avar {
+                    background-color: @mainColor;
+                    width: 4rem;
+                    height: 4rem;
+                    border-radius: 5px;
+                    text-align: -webkit-center;
+                    /* vertical-align: middle; */
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    img {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                    }
+                }
+            }
+        }
+    }
+    //适配苹果5
+    @media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+        .g-squadron {
+            border-radius: 15px;
+            .m-squadron-list {
+                padding-bottom: 20px;
+                .u-name {
+                    height: 120px;
+                    .publish-info {
+                        .role {
+                            font-size: 28px;
+                            color: #343434;
+                            font-weight: 800;
+                            margin-left: 18px;
+                            margin-top: 4px;
+                        }
+                        .publish-time {
+                            font-size: 18px;
+                            margin-top: -4px;
+                            margin-left: 18px;
+                        }
+                    }
+                    .img-left {
+                        height: 80px;
+                        width: 80px;
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
+    }   

@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>扫描二维码</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/mui.min.css" />
+		<link rel="stylesheet" href="../../assets/css/page/navbar.css" />
+		<link rel="stylesheet" href="../../assets/css/page/iphoneX.css" />
+		<link rel="stylesheet" href="../../assets/css/page/qr_scan.css" />
+		<script src="../../lib/mui.min.js"></script>
+		<style type="text/css">
+			.qr-wrap{
+				position: relative;
+				z-index: 1;
+			}
+			#bcid {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background: #000000;
+			}
+			
+			html,
+			body,
+			div {
+				height: 100%;
+				width: 100%;
+			}
+			body{
+				position: relative;
+			}
+			header{
+				z-index:10000
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav m-set-head">
+			<h1 class="mui-title u-title">扫描二维码</h1>
+			<span class="mui-icon mui-icon-spinner-cycle mui-spin mui-pull-right" id="turnTheLight"></span>
+		</header>
+		<!--<header class="mui-bar mui-bar-nav" style="background-color: #ffffff;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color: #0E76E1;">物品二维码扫描</h1>
+			<span class="mui-icon mui-icon-spinner-cycle mui-spin mui-pull-right" id="turnTheLight"></span>
+		</header>-->
+		<div class="qr-wrap">
+			<div id="bcid">
+				<!--盛放扫描控件的div-->
+			</div>
+		</div>
+		
+
+		<div class="m-footer clearfix" style="padding: 0px;">
+			<!--<div class="fbt" ></div>-->
+			<!--<div class="fbt" onclick="scanPicture();" style="display: none;">从相册选择二维码</div>-->
+			<div class="fbt" ></div>
+			<div class="fbt mui-action-back">取　 消</div>
+		</div>
+		<div class="indicatorMask"></div>
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script type="text/javascript">
+			
+
+			scan = null; //扫描对象
+			var id;
+			mui.plusReady(function() {
+				mui.init();
+				id=mui.currentWebview.actId;
+				console.log(id)
+				startRecognize();
+			});
+
+			function startRecognize() {
+				try {
+					var filter;
+					//自定义的扫描控件样式
+					var styles = {
+						frameColor: "#29E52C",
+						scanbarColor: "#29E52C",
+						background: ""
+					}
+					if(mui.os.ios){
+					     //...操作
+					     setTimeout(function(){
+						//扫描控件构造
+							scan = new plus.barcode.Barcode('bcid', filter, styles);
+							scan.onmarked = onmarked;
+							scan.onerror = onerror;
+							console.log('开始扫描')
+							scan.start();
+						},2300);
+						setTimeout(function(){
+							plus.nativeUI.alert('扫描超时，请稍后重试');
+							overScan();
+						},15000);
+					} else{
+						scan = new plus.barcode.Barcode('bcid', filter, styles);
+						scan.onmarked = onmarked;
+						scan.onerror = onerror;
+						console.log('开始扫描')
+						scan.start();
+					}
+					
+					//打开关闭闪光灯处理
+					var flag = false;
+					document.getElementById("turnTheLight").addEventListener('tap', function() {
+						if(flag == false) {
+							scan.setFlash(true);
+							flag = true;
+						} else {
+							scan.setFlash(false);
+							flag = false;
+						}
+					});
+				} catch(e) {
+					alert("出现错误啦:\n" + e);
+				}
+			};
+
+			function onerror(e) {
+				alert(e);
+			};
+
+			function onmarked(type, result) {
+				var text = '';
+				switch(type) {
+					case plus.barcode.QR:
+						text = 'QR: ';
+						break;
+					case plus.barcode.EAN13:
+						text = 'EAN13: ';
+						break;
+					case plus.barcode.EAN8:
+						text = 'EAN8: ';
+						break;
+				}
+				console.log(type);
+				console.log('扫描结果'+text + " : " + result);
+				if(type=='QR_CODE'||type==plus.barcode.QR){
+					console.log('开始扫描')
+					var obj;
+					if(type=='QR_CODE'){
+						result=result.substring(1,result.length-1);
+						obj=eval('('+result+')');
+					}else{
+						obj=JSON.parse(result);
+					}
+					console.log(obj);
+					if(id!=obj.activityId){
+						plus.nativeUI.alert('该二维码不能匹配本活动');
+						overScan();
+					}
+					else if((new Date(obj.activityEnd.replace(/-/g,  "/")).getTime()-new Date().getTime())<0){
+						plus.nativeUI.alert('该二维码已过有效期');
+						overScan();
+					}else{
+						window.dataUtil.scanCode(obj, function(res) {
+							console.log(JSON.stringify(res));
+							if(res.SystemCode==1) {
+								plus.nativeUI.alert('凭证有效，扫码成功');
+								overScan();
+							}else if(res.SystemCode==10015){
+								plus.nativeUI.alert('您已经签到');
+								overScan();
+							}
+							else{
+								plus.nativeUI.alert(window.ERROR_CONFIG[res.SystemCode]);
+								overScan();
+							}
+						}, function(xhr, type, error) {
+							plus.nativeUI.alert('扫描失败，请稍后重试');
+							overScan();
+						})
+					}
+					
+				}else{
+					plus.nativeUI.alert('请扫描正确的二维码');
+					overScan();
+				}
+			};
+
+			// 从相册中选择二维码图片 
+			function scanPicture() {
+				plus.gallery.pick(function(path) {
+					plus.barcode.scan(path, onmarked, function(error) {
+						console.log(JSON.stringify(error))
+						plus.nativeUI.alert("无法识别此图片");
+						overScan();
+					});
+				}, function(err) {
+					console.log('===用户取消相册选择图片===');
+				});
+			}
+			
+			//关闭扫描控件并退出扫描页面
+			function overScan(){
+				scan.cancel();
+				scan.close();
+				plus.webview.close('scanCode');
+			}
+		</script>
+	</body>
+
+</html>

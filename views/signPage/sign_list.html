@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/mui.min.css" />
+		<link rel="stylesheet" href="../../assets/css/page/navbar.css" />
+		<link rel="stylesheet" href="../../assets/css/page/iphoneX.css" />
+		<link rel="stylesheet" href="../../assets/css/page/exchange.css" />
+		<title>签到列表</title>
+		<style type="text/css">
+			.no-data {
+				background: #f1f1f1;
+				font-size: 14px;
+				text-align: center;
+			}
+			
+			.no-data div {
+				color: #C0C0C0;
+			}
+			#refreshContainer{
+				padding-bottom: 50px;
+			}
+			
+			#qrcode_container {
+				position: fixed;
+				top: 0;
+				left: 0;
+				background: rgba(0,0,0,0.8);
+				width: 100%;
+				height: 100%;
+				z-index: 9999;
+				display: none;
+				transition: all 1s ;
+			}
+			#qrcode {
+				width: 250px;
+				margin: 50px auto 0;
+			}
+			#qrcode img {
+				width: 250px;
+				height: 250px;
+				border: 16px solid white;
+			}
+			.preview {
+				margin: 150px auto 0;
+				color: #FFFFFF;
+				font-size: 18px;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">签到列表</h1>
+		</header>
+		<!--footer begin-->
+		<footer id="navFooter" class="m-footer"></footer>
+		<div class="indicatorMask"></div>
+		<!--footer end-->
+
+		<!--content begin-->
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper g-exchange">
+			<div class="mui-scroll">
+				<ul id="listBlock">
+					<!--这里放置真实显示的DOM内容-->
+				</ul>
+			</div>
+		</div>
+		<!--content end-->
+		<!--二维码区域-->
+		<div id="qrcode_container">
+			<div id="preview" class="preview">
+			</div>
+			<div id="qrcode">
+				
+			</div>
+		</div>
+
+		<template id="exchangeContainerTmpl">
+			{{each List item}}
+			<li>
+				<div data-title='{{item.title}}' data-certificate='{{item.id}}' data-activity-id='{{item.activityId}}' data-activity-end='{{item.activityEnd}}' data-activity-start='{{item.activityStart}}' class="order_num">
+					电子编号: <span>{{item.id}}</span>
+					<img class="qrcode" src="../../assets/images/user/qrcode.png"/>
+				</div>
+				<div class="order_content mui-clearfix">
+					<div class="order_img">
+						<img src="{{picHost + item.poster}}" />
+					</div>
+					<div class="order_info">
+						<div class="order_title">
+							{{item.title}}
+						</div>
+						<div class="order_address">
+							地点:{{item.address}}
+						</div>
+						<div class="order_time">
+							活动开始时间：{{item.activityStart}}
+						</div>
+						<div class="order_time">
+							二维码有效期：{{item.activityEnd}}
+						</div>
+						<div class="order_status">
+							{{item.status== 2 ? '已使用' : '待使用'}}
+						</div>
+					</div>
+				</div>
+			</li>
+			{{/each}}
+		</template>
+
+		<script src="../../lib/mui.min.js"></script>
+		<script src="../../lib/moment.min.js"></script>
+		<script src="../../lib/arttemplate.js"></script>
+		<script src="../../lib/arttemplate-filter.js"></script>
+		<script src="../../lib/qrcode.min.js"></script>
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src="../../assets/js/page/navbar.js"></script>
+		<script src="../../assets/js/page/exchange.js"></script>
+
+		<script>
+			mui.init({
+				pullRefresh: {
+					container: "#refreshContainer",
+					down: {
+						style: 'circle',
+						color: '#0989b6',
+						auto: true,
+						offset: '60px',
+						callback: function() {
+							getExList.exchangeList(true);
+						}
+					}
+				}
+			});
+			mui.plusReady(function() {
+				getExList.init();
+			});
+		</script>
+	</body>
+
+</html>

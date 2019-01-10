@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/mui.min.css" />
+		<link rel="stylesheet" href="../../assets/css/page/navbar.css" />
+		<link rel="stylesheet" href="../../assets/css/page/iphoneX.css" />
+		<!--user样式引入-->
+		<link rel="stylesheet" href="../../assets/css/page/user.css" />
+		<style type="text/css">
+			.mui-bar-nav {
+			    box-shadow: none;
+			}
+			.mui-bar-nav~.mui-content {
+			    padding-top: 42px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--header begin-->
+
+		<header class="mui-bar mui-bar-nav">
+		    <h1 class="mui-title">我的</h1>
+		</header>
+
+		<!--header end-->
+
+		<!--navbar begin-->
+		<footer id="navFooter" class="m-footer"></footer>
+		<div class="indicatorMask"></div>
+		<!--navbar end-->
+
+		<!--content begin-->
+
+		<div class="mui-content user-management-system f-clearfix">
+
+			<div class="user-admin">
+				<!--头像-->
+				<div class="u-profile">
+					<img id="headImage" src="../../assets/images/user/icon_user_portrait.png" class="user-profile">
+				</div>
+				<!--用户信息-->
+				<div class="user-grade">
+					<p id="name" class="eng"></p>
+					<!--<p id="org" class="cha">琅琊路小学5年1班</p>-->
+				</div>
+				<!--二维码-->
+				<!--<img src="../../src/images/user/user_code_new.png" id="user-code" class="user-code">-->
+			</div>
+			<!--用户信息 结束-->
+			
+			<!--用户管理 开始-->
+			<div class="user-management">
+				<ul>
+					<li  data-target = "editInfo">
+						<div class="user-info user-icon"></div>
+						<span>我的资料</span>
+					</li>
+					<!--<li data-target = "myComment">
+						<div class="user-comment user-icon"></div>
+						<span>我的评论</span>
+					</li>
+					<li data-target = "myCollection">
+						<div class="user-collect user-icon"></div>
+						<span>我的收藏</span>
+					</li>
+					<li data-target = "myFeedBack">
+						<div class="user-advice user-icon"></div>
+						<span>我的反馈</span>
+					</li>-->
+					<li class="border-fix" data-target = "setting">
+						<div class="user-setting user-icon"></div>
+						<span>设置</span>
+					</li>
+				</ul>
+			</div>
+			<!--用户管理 结束-->
+		</div>	
+		<!--content end-->
+
+		<script src="../../lib/mui.min.js"></script>
+		<script src="../../lib/jsencrypt.min.js"></script>
+		<script src="../../lib/arttemplate.js"></script>
+		<script src="../../lib/arttemplate-filter.js"></script>
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src="../../assets/js/page/navbar.js"></script>
+		<script src="../../assets/js/page/user.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				mineIdx.init();
+			})
+		</script>
+	</body>
+
+</html>

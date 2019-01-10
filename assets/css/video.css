@@ -1,0 +1,102 @@
+.mui-video-Container .mui-video-full{position:relative;overflow: hidden;}
+.mui-video-Container video{ width: 100%; background-color: #000000;}   	
+.mui-video-Container video[ishivideo="true"]::-webkit-media-controls{
+display:none !important;
+}
+.mui-video-Container video[ishivideo="true"]::-moz-media-controls{
+    display:none !important;
+}
+.mui-video-Container video[ishivideo="true"]::media-controls{
+    display:none !important;
+}
+.mui-video-Container .icon{
+   width: 1em; height: 1em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+   font-size:20px; position: relative;top:1px;
+}
+.mui-video-Container .rprogress
+{
+	           position:absolute;
+				left:0px;
+				top:0px;
+				bottom:0px;
+				right:0px;
+				margin:auto;
+				width:60px;
+				height:60px; text-align: center; line-height: 60px;
+				 display: none;
+}
+.mui-video-Container .rprogress .ladtit{ color: white; font-size: 14px;}
+.mui-video-Container .rschedule {
+				background-color: rgba(0, 0, 0, 0);
+				border:3px solid rgba(0, 183, 229, 0.9);
+				opacity: .9;
+				border-left: 5px solid rgba(0, 0, 0, 0);
+				border-right: 5px solid rgba(0, 0, 0, 0);
+				border-radius: 50px;
+				box-shadow: 0 0 15px #2187e7;
+				width: 46px;
+				height: 46px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -23px;
+				margin-top: -23px;
+				-webkit-animation: spin 1s infinite linear;
+				animation: spin 1s infinite linear;
+			}
+@-webkit-keyframes spin {
+				0% {
+					-webkit-transform: rotate(0deg);
+				}
+				100% {
+					-webkit-transform: rotate(360deg);
+				}
+			}
+			@keyframes spin {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+}
+
+/*横条样式*/  
+.mui-video-Container input[type=range] {  
+  -webkit-appearance: none;/*清除系统默认样式*/  
+  width: 100%;  
+  background: -webkit-linear-gradient(#40CEA8, #40CEA8) no-repeat, #fff;/*设置左边颜色为#61bd12，右边颜色为#ddd*/  
+  background-size:0% 100%;/*设置左右宽度比例*/  
+  height: 3px;/*横条的高度*/  
+}  
+/*拖动块的样式*/  
+.mui-video-Container input[type=range]::-webkit-slider-thumb {  
+  -webkit-appearance: none;/*清除系统默认样式*/  
+  height:13px;/*拖动块高度*/  
+  width:13px;/*拖动块宽度*/  
+  background: #fff;/*拖动块背景*/  
+  border-radius: 50%; /*外观设置为圆形*/  
+ /* border: solid 1px #ddd;*/ /*设置边框*/  
+}  
+.mui-video-Container .mui-pay_ico{ z-index:2; width:80px; text-align: center; height:80px; margin:auto;position: absolute;  
+  top: 0; left: 0; bottom: 0; right: 0; }
+.mui-video-Container .mui-pay_ico .icon{ font-size:52px; color: white;} 
+.mui-video-Container .mui-time-current{width:14%; float: left;text-align: center;  display: inline-block; color: white; font-size: 14px;}
+.mui-video-Container .mui-time-total{width:10%; float: right; text-align: center; color: white;display: inline-block;  font-size: 14px;}  	
+.mui-video-Container .mui-time-total .icon{ font-size:28px; color: white;} 
+.mui-video-Container .mui-quanping{ margin-top:6px; margin-left: 3px;}
+.mui-video-Container .mui-videoControls{ height: 40px; width:100%; line-height: 40px; background-color: rgba(0,0,0,0.5); position: absolute; z-index:4; bottom:0px; overflow: hidden; }
+.mui-video-Container .mui-progressWrap{ height:20px;width:64%;float:left; position: relative; top:18px;}
+.mui-video-Container .mui-full-back{position: absolute; z-index: 2;display: none;}
+.mui-video-Container .mui-full-back .icon{ font-size:26px; color:white; left: 15px; top: 5px;} 
+.mui-video-Container .mui-full-back  .vtitle{color:white; margin-left: 15px; position: relative;top:4px; font-size:15px; }
+.mui-video-Container .v_left,.mui-video-Container .b_right{ position: absolute; width:50%; height: 100%; z-index: 1;}
+.mui-video-Container .b_right{ right: 0px;}
+.mui-video-Container .ptime{position: absolute; z-index:2;left:0px; text-align: center; display: none; 
+				top:0px;
+				bottom:0px;
+				right:0px;
+				margin:auto;border-radius: 3px; background-color: rgba(0,0,0,0.6); height:40px; width:120px; line-height: 40px; color: white;}        

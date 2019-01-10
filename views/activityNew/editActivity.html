@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/mui.min.css" />
+		<link rel="stylesheet" href="../../assets/css/page/iphoneX.css" />
+		<link rel="stylesheet" href="../../assets/css/page/squadron.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/mui.picker.min.css" />
+		<link rel="stylesheet" href="../../assets/css/page/editActivity.css" />
+		<link href="../../assets/css/uploader.css" rel="stylesheet" type="text/css" />
+		<title>发布、编辑活动</title>
+		<style type="text/css">
+			#publishPhotoList li:first-child .circle-photo-item{
+				border: 1px solid #0989b6;
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<!--<div class="videoBox">
+			<span class="mui-btn mui-btn-red" id="removeVideo">关闭</span>
+			<video src='' controls="controls" autoplay id="video"></video>
+		</div>-->
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" id="title">
+				发布活动
+			</h1>
+			<span id="done" class="mui-icon mui-pull-right">提交</span>
+		</header>
+		<div class="mui-content">
+			<div class="add-work-title">
+				<input type="text" placeholder="请输入活动名称" id="work-title" />
+			</div>
+			<div class="add-work-title">
+				<input type="text" placeholder="请输入活动地址" id="work-addr" />
+			</div>
+			<div class="add-work-title">
+				<div class="title">
+							开始时间
+						</div>
+				<input type="text" placeholder="选择日期时间..." id="startTime" />
+			</div>
+			<div class="add-work-title">
+				<div class="title">
+							结束时间
+						</div>
+				<input type="text" placeholder="选择日期时间..." id="endTime" />
+			</div>
+			<div class="add-work-title">
+				<div class="title">
+							报名截止
+						</div>
+				<input type="text" placeholder="选择日期时间..." id="overTime" />
+			</div>
+			
+			<div class="m-add-circle">
+
+				<textarea id="work-text" placeholder="活动详情描述..."></textarea>
+				<div class="media-box">
+					<div>
+						<div class="title">
+							添加图片
+						</div>
+						<ul id="publishPhotoList" class="publish-circle-photo-list mui-clearfix">
+							<li id="addCirclePhotoBtn">
+								<div class="publish-avar">
+									<img src="../../assets/images/squadron/upload-picture.png" />
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div id="uploadVideoBox">
+						<!--<div class="title">
+							添加视频
+						</div>
+						<ul id="publishVideoList" class="publish-circle-photo-list mui-clearfix">
+							<li id="addCircleVideoBtn" class="x-button">
+								<div class="publish-avar">
+									<img src="../../assets/images/squadron/upload-picture.png">
+									<input type="file" name="videoUploadInput" id="videoUploadInput" value="" class="input" accept="video/*"/>
+									</img >
+								</div>
+							</li>
+						</ul>
+						<div class="progress-box" >
+							<div id="progress" class="mui-progressbar">
+								<span></span>
+							</div>
+							<div class="btn-box">
+								<span id="uploadStatus"></span>
+								<a class="mui-btn mui-btn-mini mui-btn-red" id="pauseUpload" >暂停</a>
+								<a class="mui-btn mui-btn-mini mui-btn-red" id="cancelUpload">删除</a>
+							</div>
+							
+						</div>-->
+					</div>
+					<div id="uploadAudioBox">
+						<!--<div class="title">
+							添加音频
+						</div>
+						<ul id="publishFileList" class="publish-circle-photo-list mui-clearfix">
+							<li id="addCircleFileBtn" class="x-button">
+								<div class="publish-avar">
+									<img src="../../assets/images/squadron/upload-picture.png">
+									<input type="file" name="FileUploadInput" id="FileUploadInput" value="" class="input" accept="audio/*"/>
+									</img >
+								</div>
+							</li>
+						</ul>
+						<div class="progress-box" >
+							<div id="progressFile" class="mui-progressbar">
+								<span></span>
+							</div>
+							<div class="btn-box">
+								<span id="uploadStatusAuido"></span>
+								<a class="mui-btn mui-btn-mini mui-btn-red" id="pauseUploadFile" >暂停</a>
+								<a class="mui-btn mui-btn-mini mui-btn-red" id="cancelUploadFile">删除</a>
+							</div>
+							
+						</div>-->
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+
+		<script src="../../lib/mui.min.js"></script>
+		<script src="../../lib/arttemplate.js"></script>
+		<script src="../../assets/js/config.js"></script>
+		<script src="../../assets/js/util.js"></script>
+		<script src="../../lib/mui.picker.min.js"></script>
+		<script src="../../assets/js/page/editActivity.js"></script>
+	    <script src="../../lib/aliyun-oss-sdk.min.js"></script>
+	    <!--<script src="../../lib/multipartFile.js"></script>-->
+	    <!--<script src="https://cdn.bootcss.com/babel-polyfill/7.0.0-beta.49/polyfill.min.js"></script>-->
+	    <!--<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>-->
+	    
+		<script>
+			mui.init();
+			//添加图片
+			mui.plusReady(function() {
+				videoNum=addWork.init();  
+//				multipartFile.init('video',false,'uploadVideoBox');
+//				multipartFile.init('audio',false,'uploadAudioBox');
+			});
+			
+		</script>
+	</body>
+
+</html>

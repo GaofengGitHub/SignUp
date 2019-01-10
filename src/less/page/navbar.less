@@ -1,0 +1,91 @@
+/*
+ * 说明：nav导航
+ * 创建人：ch
+ * 创建时间：2018/3/7 14:30
+ * 修改人：ch
+ * 修改时间：2018/3/7 14:30
+ */
+
+@import '../app.less';
+
+.m-footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    display: flex;
+    height: 100px;
+    width: 100%;
+    background: #fff;
+    padding-top: 4px;
+    .footer-item{
+        flex:1; 
+        .item-content{
+            padding-top: 60px;
+            text-align: center;
+            font-size: 20px;
+            color: @navTxtGrayColor;
+            background-repeat: no-repeat;
+            background-size: 50px;
+            background-position: center 10px;
+        }
+        .icon-index {
+            background-image: url(@nav-index-icon);
+        }
+        .icon-app{
+            background-image: url(@nav-app-icon);
+        }
+        .icon-class {
+            background-image:url(@nav-class-icon);
+        }
+        .icon-roster{
+            background-image: url(@nav-roster-icon);
+        }
+        .icon-mine{
+            background-image: url(@nav-my-icon);
+        }
+        .icon-person{
+            background-image: url(@nav-app-person);
+        }
+        .icon-person-active{
+            background-image: url(@nav-app-person-active);
+            color: @mainColor;
+        }
+        .icon-message{
+            background-image: url(@nav-app-message);
+        }
+        .icon-message-active{
+            background-image: url(@nav-app-message-active);
+            color: @mainColor;
+        }
+        .icon-index-active {
+            background-image: url(@nav-index-icon-active);
+            color: @mainColor;
+        }
+        .icon-app-active{
+            background-image: url(@nav-app-icon-active);
+            color: @mainColor;
+        }
+        .icon-class-active {
+            background-image:url(@nav-class-icon-active);
+            color: @mainColor;
+        }
+        .icon-roster-active{
+            background-image: url(@nav-roster-icon-active);
+            color: @mainColor;
+        }
+        .icon-mine-active{
+            background-image: url(@nav-my-icon-active);
+            color: @mainColor;
+        }
+    }
+}
+.indicatorMask {
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #FFFFFF;
+    display: none;
+}

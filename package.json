@@ -1,0 +1,25 @@
+{
+  "name": "zhsxd_app",
+  "version": "1.0.0",
+  "description": "智慧少先队",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.huhuschool.com:chenghao/zhsxd_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.2",
+    "gulp-imagemin": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^4.0.0",
+    "gulp-postcss": "^7.0.1",
+    "gulp-uglify": "^3.0.0",
+    "postcss-px-to-viewport": "0.0.3"
+  }
+}
